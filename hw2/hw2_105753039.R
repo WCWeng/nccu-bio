@@ -54,23 +54,16 @@ print(paste("gap extend penalty :", g_e))
 pam250 <- read.table("pam250.txt")
 pam250 <- as.matrix(pam250)
 
-#library("seqinr")
-#library("Biostrings")
+library("Biostrings")
 s1 <- read first seq. from test.fasta
 s2 <- read sceond seq. from test.fasta
 
 #initialize score_matrix
 score_matrix <- matrix(row = s1+1, cul = s2+1)
-set values of first row = 0 -1 -2 -3 ... -length(s1)
-set values of first culumn = 0 -1 -2 -3 ... -length(s2)
+set values of first row = 0 -2 -4 -6 ... -length(s1)*2
+set values of first culumn = 0 -2 -4 -6 ... -length(s2)*2
 
-tag <- 0  #i=0 : no gap yet
 while(s1!=NULL || s2!=NULL){
-  if(tag == 0){
-    #gap_open penalty
-    gap_penalty <- -10
-    tag <- 1
-  }
   #gap_extend penalty
   gap_penalty <- -2
   for(int i = 1; i <= length(s1); i++)
